@@ -635,3 +635,25 @@ XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
         |fileNumber|JavaScript文件名称|
         |liineNumber|错误所在代码行数|
 
+    3. Error对象继承体系
+
+        |对象|描述|
+        |:-:|:-:|
+        |Error|一般性错误，父类|
+        |SyntaxError|语法错误|
+        |ReferenceError|尝试应用未在作用域内声明的量|
+        |TypeError|意外的数据类型，无法进行自动类型转换|
+        |RangeError|数字超出可接受范围|
+        |URIError|URI编码或解码错误|
+        |EvalError|eval()函数出错|
+
+* JavaScript错误调试
+    1. 工具：Chrome或Firefox的开发者模式，及一些插件。
+    2. 使用控制台对象console。
+        * console.log()
+        * console.info(), warn(), error()
+        * console.table()
+    3. 断点调试和debugger模式。
+    4. 异常处理
+        * try-catch-finally
+        * throw
