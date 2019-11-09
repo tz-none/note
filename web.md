@@ -601,3 +601,37 @@ XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
     3. .prepand()
     4. append()
     ![插入元素](./picture/jQuery_insertElement.png)
+* 迭代元素.each()
+* 事件处理.on()
+
+## ch11 AJAX、JQuery与JSON
+
+### JSON(JavaScript Object Notation)
+
+* JSON是一种轻量级的数据交换格式，易于人阅读和编写，同时也易于机器解析和生成。
+* JSON是JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1999标准的一个子集。
+* JSON采用完全独立于语言的文本格式，但是也使用了类似于C语言家族的习惯(包括C, C++, C#, Java, JavaScript, Perl, Python等)。 这使得JSON成为理想的数据交换语言。
+* JSON语法——对象
+    1. 对象是一个无序的“键/值”对的集合。
+    2. 一个对象以“{”开始，“}”结束。
+    3. 每个“键”后跟一个“:”
+    4. “键/值”对之间使用“,”（逗号）分隔。
+* JSON语法——数组
+    1. 数组是值（value）的有序集合。
+    2. 一个数组以“[”开始，“]”结束。
+    3. 值之间使用“,”（逗号）分隔。
+* JSON语法——值：值（value）可以是双引号括起来的字符串string、数值number、true、false、 null、对象object或者数组array。
+
+### JavaScript错误处理
+
+* Error对象
+    1. Error对象是JavaScript语言中的异常对象，当脚本中有错误发生时，浏览器会将相关错误信息封装在Error对象中。
+    2. 属性：
+
+        |属性|描述|
+        |:-:|:-:|
+        |name|异常描述|
+        |message|描述|
+        |fileNumber|JavaScript文件名称|
+        |liineNumber|错误所在代码行数|
+
