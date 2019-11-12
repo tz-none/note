@@ -104,12 +104,45 @@
     * Schema基于XML语法，所以可以使用解析XML的工具解析Schema文件；
     * Schema扩充了数据类型，还支持元素的集成和属性组等。
 
-9. JDBC
+9. XML、DTD与Schema
+    * XML
+
+        ```xml
+        <书本>
+            <名称>书剑恩仇录</名称>
+            <作者>金庸</作者>
+        </书本>
+        ```
+
+    * DTD
+
+        ```DTD
+        <!ElEMENT 书本 (名称,作者)>
+        <!ELEMENT 名称 (#PCDATA)>
+        <!ELEMENT 作者 (#PCDATA)>
+        ```
+
+    * Schema
+
+        ```Schema
+        <element name="书本" type="书本类型"/>
+        <complexType name="书本类型">
+            <element name="名称" type="string">
+            <element name="作者" type="string">
+        <complexType>
+        ```
+
+10. JDBC
     * JDBC是Java数据库连接(Java Database Connectivity)的简称
     * 是Java平台(JavaSE)中用来规范客户端程序如何来访问数据库的应用程序接口(API)，提供了诸如查询和更新数据库中数据的方法。
     * 软件开发人员使用这些标准API来连接和操作数据库，实现数据库应用程序的开发。
     * JDBC API采用接口和实现分离的设计思想，其中接口主要包含在**java.sql**包中，之后的扩展内容在**javax.sql**包中。
     * 这些接口的实现类被称为数据库驱动程序，由数据库厂商或其他厂商、个人提供。
+    * JDBC API
+        1. Connection
+        2. Statement
+        3. PreparedStatement
+        4. ResultSet
 
 ## ch02 Servlet基础
 
@@ -117,21 +150,37 @@
     * **Servlet API**是开发Servlet的主要技术，学习这种技术的主要方法就是掌握Servlet API中定义的**核心接口和类**
     * Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
 
-2. Servlet API
+2. **Servlet API**
     * **javax.servlet**：定义Servlet和Servlet容器之间契约的类和接口；
     * **javax.servlet.http**: 定义基于HTTP协议的Servlet的类和接口
     * javax.servlet.annotation: Servlet、Filter、Listener等接口的注解定义
     * javax.servlet.descriptor: 一些配置信息的类型定义。
 
-3. javax.servlet包
+3. **javax.servlet包**
     ![servlet主要接口和类](./picture/servlet主要接口和类.png)
     * Servlet技术的核心是javax.servlet.Servlet接口，所有的Servlet类必须直接或间接的实现Servlet接口。
     * Servlet容器负责加载和调和具体的Servlet类，每一个类型的Servlet类只能有一个实例。
 
-### Servlet的生命周期
+4. **Servlet的生命周期**
+    * 包括加载、实例化、处理客户端请求和销毁。
+    * 该生命周期有javax.servlet.Servlet接口的init、service、destory方法实现。
 
-* 包括加载、实例化、处理客户端请求和销毁。
-* 该生命周期有javax.servlet.Servlet接口的init、service、destory方法实现。
+5. **配置Servlet**
+    * 方法一：使用配置文件
+
+        ```xml
+        <servlet>
+            <servlet-name>Servlet</servlet-name>
+            <servlet-class>Servlet.java</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>Servlet</servlet-name>
+            <url-pattern>/servlet</url-pattern>
+        </servlet-mapping>
+        ```
+
+    * 方法二：使用注解
+        `@WebServlet(name = "Servlet", urlPatterns = {"/servlet"}`
 
 ## ch03 JSP
 
@@ -147,7 +196,7 @@
         3. 编译Servlet，并加载到内存执行;
         4. 将结果响应至客户端。
 
-2. JSP语法
+2. **JSP语法**
     * JSP语法构成
 
     用途|格式
@@ -195,210 +244,274 @@
             (Servlet对象)page, config;
             (错误对象)exception
 
-3. Web
+3. **Web**
+    * **页面关联**
+        1. Web应用程序的优点之一就是能够聚合大量的信息资源，而单个的Web组件所提供的信息和功能是有限的。因此需要通过Web组件间的关联来实现信息的共享和功能的聚合。
+        2. Web组件的关联关系：
+            * 请求转发(forward)
+                * 请求转发是指将客户端的请求转发给同一个应用程序中的其他Web组件。
+                * 在Servlet API中通过RequestDispatcher接口的forward()来实现HTTP请求的转发，同时将ServletRequest和ServletResponse对象传递给目标组件。
+                * 在JSP/Servlet技术，具体的操作方式:
+                    `request.getRequestDispatcher(“目标”).forward();`
+                    标准动作<jsp:forward />
+            * 请求重定向(redirect)
+                * Web组件可以将请求重定向到任意的URL。
+                * 重定向后即表明该次请求响应流程已完成：
+                    返回一个响应给客户端(地址栏发生改变)；
+                    客户端根据响应发起一次新的请求；
+                    不能使用之前的request对象。
+                * 在JSP/Servlet技术，具体的操作方式有：
+                    `response.sendRedirect(“目标”);`
+            * 包含(include)
 
-* 页面关联
-    1. Web应用程序的优点之一就是能够聚合大量的信息资源，而单个的Web组件所提供的信息和功能是有限的。因此需要通过Web组件间的关联来实现信息的共享和功能的聚合。
-    2. Web组件的关联关系：
-        * 请求转发(forward)
-            * 请求转发是指将客户端的请求转发给同一个应用程序中的其他Web组件。
-            * 在Servlet API中通过RequestDispatcher接口的forward()来实现HTTP请求的转发，同时将ServletRequest和ServletResponse对象传递给目标组件。
-            * 在JSP/Servlet技术，具体的操作方式:
-                `request.getRequestDispatcher(“目标”).forward();`
-                标准动作<jsp:forward />
+    * **作用域**
+        1. page(页面范围)
+        2. request(请求范围)
+        3. session(会话范围)
+        4. application(应用范围)
 
-        * 请求重定向(redirect)
-            * Web组件可以将请求重定向到任意的URL。
-            * 重定向后即表明该次请求响应流程已完成：
-                返回一个响应给客户端(地址栏发生改变)；
-                客户端根据响应发起一次新的请求；
-                不能使用之前的request对象。
-            * 在JSP/Servlet技术，具体的操作方式有：
-                `response.sendRedirect(“目标”);`
+    * 会话跟踪
+        1. 会话跟踪：维持Web应用中服务端和客户端之间的HTTP连接的方法。
+        2. Web应用中的常用的会话跟踪方法：
+            1. URL重写
+            2. 隐藏域
+            3. 客户端保存信息(Cookies)
+            4. 服务端保存信息(HttpSession)
 
-        * 包含(include)
+        3. URL重写：URL重写是一种会话跟踪技术，其实现方式是将一个或多个token添加到URL的查询字符串中，每个token以key=value的方式表现。
+        4. 限制：
+            1. URL的长度取决于浏览器限制
+            2. URL重写需在服务端完成，token过于复杂难以操作
+            3. 某些字符(空格，问号等)必须用base64编码
+            4. 所有信息在地址栏均可见
 
-* 会话跟踪
+        5. 隐藏域：使用隐藏域进行会话跟踪，其原理和重写URL方法类似，区别是将附加在URL中的token信息放置到form表单的隐藏域中。
+        6. 比较于URL重写方法：
+            1. 没有字符数限制
+            2. 无须进行特殊编码
 
-    * 会话跟踪：维持Web应用中服务端和客户端之间的HTTP连接的方法。
-    * Web应用中的常用的会话跟踪方法：
-        1. URL重写
-        2. 隐藏域
-        3. 客户端保存信息(Cookies)
-        4. 服务端保存信息(HttpSession)
+        7. Cookie：
+            1. Cookie是一个对象，其内容主要包含以key-value形式保存的token信息。
+            2. Cookie作为HTTP请求头的一部分，其传输由HTTP协议控制。
+            3. Cookie可以由服务端构建，也可以由浏览器端的JavaScript语言构建，最终都保存在浏览器中。
+            4. Cookie对象除了包含token信息外，还有maxAge、path等属性。
+            5. 用Cookies方式来进行会话跟踪的主要缺点是用户可在浏览器进行限制。
 
-    * URL重写：URL重写是一种会话跟踪技术，其实现方式是将一个或多个token添加到URL的查询字符串中，每个token以key=value的方式表现。
-    * 限制：
-        1. URL的长度取决于浏览器限制
-        2. URL重写需在服务端完成，token过于复杂难以操作
-        3. 某些字符(空格，问号等)必须用base64编码
-        4. 所有信息在地址栏均可见
-
-    * 隐藏域：使用隐藏域进行会话跟踪，其原理和重写URL方法类似，区别是将附加在URL中的token信息放置到form表单的隐藏域中。
-    * 比较于URL重写方法：
-        1. 没有字符数限制
-        2. 无须进行特殊编码
-
-    * Cookie：
-        1. Cookie是一个对象，其内容主要包含以key-value形式保存的token信息。
-        2. Cookie作为HTTP请求头的一部分，其传输由HTTP协议控制。
-        3. Cookie可以由服务端构建，也可以由浏览器端的JavaScript语言构建，最终都保存在浏览器中。
-        4. Cookie对象除了包含token信息外，还有maxAge、path等属性。
-        5. 用Cookies方式来进行会话跟踪的主要缺点是用户可在浏览器进行限制。
-
-    * HttpSession:
-        1. HttpSession是所有的会话跟踪技术中最强大和最通用的技术。
-        2. 其基本原理是：用户第一次请求服务器时，由服务器创建HttpSession对象，并生成唯一的用户ID(JSESSIONID)，其他会话token信息以key-value的方式保存在HttpSession对象中，将用户ID以Cookie或URL的方式告知客户端浏览器，整个过程由Web容器进行管理和控制。
-        3. 服务端程序通过HttpServletRequest对象的getSession()方法获取HttpSession对象，HttpSession提供一系列方法实现上述功能。
+        8. HttpSession:
+            1. HttpSession是所有的会话跟踪技术中最强大和最通用的技术。
+            2. 其基本原理是：用户第一次请求服务器时，由服务器创建HttpSession对象，并生成唯一的用户ID(JSESSIONID)，其他会话token信息以key-value的方式保存在HttpSession对象中，将用户ID以Cookie或URL的方式告知客户端浏览器，整个过程由Web容器进行管理和控制。
+            3. 服务端程序通过HttpServletRequest对象的getSession()方法获取HttpSession对象，HttpSession提供一系列方法实现上述功能。
 
 ## ch04 MVC基础
 
 1. MVC模式
-![MVC模式](./picture/MVC.png)
+    ![MVC模式](./picture/MVC.png)
 
 2. MVC分层模型
-![MVC分层模型](./picture/MVC分层模型.png)
+    ![MVC分层模型](./picture/MVC分层模型.png)
+    * **Model**由JavaBean组成，又可以细分为领域对象、业务bean和DAO
+    * **View**由JSP组成
+    * **Controller**由Servlet实现
 
-* **Model**由JavaBean组成，又可以细分为领域对象、业务bean和DAO
-* **View**由JSP组成
-* **Controller**由Servlet实现
+3. 项目结构
+    ![项目结构](./picture/项目结构.png)
+    * domain：JavaBean
+    * persistence：DAO
+    * service
+    * util：工具类
+    * servlet
 
 ## ch05 EL和JSTL
 
-### EL(Expression Language)表达式语言
+1. EL(Expression Language)表达式语言
 
-* EL是一种简单而强大的语言，提供了在JSP脚本元素范围外使用运行时表达式的功能。
-* 主要包括：基于命名空间与嵌套的属性访问、对集合与操作符的访问、映射到Java类中方法的可扩展函数和一组隐式对象。
-* 其基本语法为：`${Expression}`
-* 提供两个操作符完成取值：.和[]
-* 常用场景：表达式求值、访问作用域变量和JavaBean、访问数组与集合。
+    * EL是一种简单而强大的语言，提供了在JSP脚本元素范围外使用运行时表达式的功能。
+    * 主要包括：基于命名空间与嵌套的属性访问、对集合与操作符的访问、映射到Java类中方法的可扩展函数和一组隐式对象。
+    * 其基本语法为：`${Expression}`
+    * 提供两个操作符完成取值：.和[]
+    * 常用场景：表达式求值、访问作用域变量和JavaBean、访问数组与集合。
+    * EL运算符
+        1. []和.运算符：用于对象属性或数组、集合
+        2. Java支持的算术运算符和逻辑运算符
+        3. empty运算符
+        4. EL关键字：and, eq, gt, true, instanceof, or, ne, le, false, empty, not, it, ge, null, div, mod
 
-1. EL运算符
-    * []和.运算符：用于对象属性或数组、集合
-    * Java支持的算术运算符和逻辑运算符
-    * empty运算符
-    * EL关键字：and, eq, gt, true, instanceof, or, ne, le, false, empty, not, it, ge, null, div, mod
-
-2. EL隐式对象
+    * EL隐式对象
     ![EL隐式对象](./picture/EL隐式对象.png)
 
-### JSTL(JSP Standard Tag Library)
+2. JSTL(JSP Standard Tag Library)
 
-* 为了进一步提高代码的可重用性，JSP规范中允许用户自定义标签。
-* 一个自定义标签由标签描述文件(.tld)和标签处理程序(.java)两个部分组成。
-* SUN公司在JavaEE规范中提供一套较为通用的标签库：标准标签库(JSTL)。
-* 在JSP页面使用JSTL需要使用taglib指令
-`<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>`
-* 其中uri用于指定tld文件路径，prefix用于给标签指定前缀。
-* JSTL结合EL能大量的简化JSP页面的代码。
+    * 为了进一步提高代码的可重用性，JSP规范中允许用户自定义标签。
+    * 一个自定义标签由标签描述文件(.tld)和标签处理程序(.java)两个部分组成。
+    * SUN公司在JavaEE规范中提供一套较为通用的标签库：标准标签库(JSTL)。
+    * 在JSP页面使用JSTL需要使用taglib指令
+    `<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>`
+    * 其中uri用于指定tld文件路径，prefix用于给标签指定前缀。
+    * JSTL结合EL能大量的简化JSP页面的代码。
 
-类型|功能|URI|前缀
-:-:|:-:|:-:|:-:
-核心标签库|变量控制、逻辑控制、URL管理等|http://java.sun.com/jsp/jstl/core|c
-XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
-国际化|语言控制、格式化等|http://java.sun.com/jsp/jstl/fmt|fmt
-数据库|SQL功能|http://java.sun.com/jsp/jstl/sql|sql
-函数|集合、字符串操作等|http://java.sun.com/jsp/jstl/functions|fn
+    类型|功能|URI|前缀
+    :-:|:-:|:-:|:-:
+    核心标签库|变量控制、逻辑控制、URL管理等|http://java.sun.com/jsp/jstl/core|c
+    XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
+    国际化|语言控制、格式化等|http://java.sun.com/jsp/jstl/fmt|fmt
+    数据库|SQL功能|http://java.sun.com/jsp/jstl/sql|sql
+    函数|集合、字符串操作等|http://java.sun.com/jsp/jstl/functions|fn
 
+    * 常用标签
+        1. <c:set>
+            `<c:set value="value" var="name" scope="[page|request|session|application]"`
+
+        2. <c:if>
+
+            ```jsp
+            <c:if test="条件表达式">
+                body content
+            </c:if>
+            ```
+
+        3. <c:choose><c:when><c:otherwise>
+
+            ```jsp
+            <c:choose>
+                <c:when test="条件表达式">
+                </c:when>
+                <c:when test="条件表达式">
+                </c:when>
+                <c:otherwise>
+                </c:otherwise>
+            </c:choose>
+            ```
+
+        4. <c:out>
+            `<c:out value="<string>" default="<string>" escapeXml="<true|false>"/>`
+
+        5. <c:foreach>
+
+            ```jsp
+            <c:foreach [var="name"] begin="begin" end="end" step="step">
+                body content
+            </c:foreach>
+
+            <c:foreach items="数组或集合" [var="name"] [begin="begin"] [end="end"] [step="step"]>
+                body content
+            </c:foreach>
+            ```
 
 ## ch06 监听器和过滤器
 
-### 监听器
+1. 监听器
 
-* Servlet API提供一系列的事件和事件监听接口，在Java Web应用的开发中通过调用这些API可以进行事件驱动的开发
-* 监听器接口可以分为三类：
-    1. ServletContext：监听Servlet上下文相关事件
-    2. HttpSession：监听会话对象Session的相关事件
-    3. ServletRequest：监听请求对象Request的相关事件
-* 编写监听器方法：
-    1. 实现相关监听器接口，并完成具体方法实现
-
-    ```java
-    public class XxxListener implements XxxXxxListener {
-        //实现事件方法
-    }
-    ```
-
-    2. 在容器内配置监听器或使用注解
-
-    ```XML
-    //web.xml
-    <listener>
-        <listener-class>Class</listener-class>
-    </listener>
-    ```
-
-### 过滤器
-
-* Servlet过滤器是JavaEE中的一个小型Web组件。其主要功能是：拦截来自客户端的请求和服务端的响应，进行数据的预处理或其他特定操作。
-* 常用场景：
-    1. 对用户请求进行统一认证
-    2. 对用户访问进行审核和统计
-    3. 对用户发送的数据进行过滤或替换
-    4. 转换图像格式
-    5. 对响应内容进行压缩，减少网络传输量
-    6. 对请求或响应数据进行加/解密处理
-* 编写过滤器方法：
-    1. 实现过滤器接口，并完成具体方法
+    1. Servlet API提供一系列的事件和事件监听接口，在Java Web应用的开发中通过调用这些API可以进行事件驱动的开发
+    2. 监听器接口可以分为三类：
+        * ServletContext：监听Servlet上下文相关事件
+        * HttpSession：监听会话对象Session的相关事件
+        * ServletRequest：监听请求对象Request的相关事件
+    3. 监听器API
+        ![监听器API](./picture/监听器API.png)
+    4. 编写监听器方法：
+        * 实现相关监听器接口，并完成具体方法实现
 
         ```java
-        public class XxxFilter implements Filter {
-            init();
-            doFilter();
-            destroy()
+        public class XxxListener implements XxxXxxListener {
+            //实现事件方法
         }
         ```
 
-    2. 在容器内配置过滤器或使用注解
+        * 在容器内配置监听器或使用注解
 
         ```XML
-        <filter>
-            <filter-name>XxxFilter<filter-name>
-            <filter-class>servlet.XxxFilter</filter-class>
-        </filter>
-        <filter-mapping>
-            <filter-name>XxxFilter</filter-name>
-            <url-pattern>拦截的URL</url-pattern>
-            <dispatcher>拦截的方式</dispatcher>
-        </filter-mapping> 
+        //web.xml
+        <listener>
+            <listener-class>Class</listener-class>
+        </listener>
         ```
+
+2. 过滤器
+
+    1. Servlet过滤器是JavaEE中的一个小型Web组件。其主要功能是：拦截来自客户端的请求和服务端的响应，进行数据的预处理或其他特定操作。
+    2. 常用场景：
+        * 对用户请求进行统一认证
+        * 对用户访问进行审核和统计
+        * 对用户发送的数据进行过滤或替换
+        * 转换图像格式
+        * 对响应内容进行压缩，减少网络传输量
+        * 对请求或响应数据进行加/解密处理
+    3. 编写过滤器方法：
+        * 实现过滤器接口，并完成具体方法
+
+            ```java
+            public class XxxFilter implements Filter {
+                init();
+                doFilter();
+                destroy()
+            }
+            ```
+
+        * 在容器内配置过滤器或使用注解
+
+            ```XML
+            <filter>
+                <filter-name>XxxFilter<filter-name>
+                <filter-class>servlet.XxxFilter</filter-class>
+            </filter>
+            <filter-mapping>
+                <filter-name>XxxFilter</filter-name>
+                <url-pattern>拦截的URL</url-pattern>
+                <dispatcher>拦截的方式</dispatcher>
+            </filter-mapping> 
+            ```
 
 ## ch07 HTML和CSS
 
+1. HTML
+2. CSS基本语法
+    * 选择器
+        1. 标签选择器
+        2. 类选择器 使用.
+        3. ID选择器 使用#
+    * 属性
+        1. 字体
+        2. 颜色
+        3. 边框：border, margin, padding
+3. CSS布局方式
+    * 普通流
+    * 相对定位
+    * 绝对定位：固定定位、浮动元素、属性(z-index)
+
 ## ch08 JavaScript基础
 
-* JavaScript是目前广泛用于客户端开发的一种脚本语言。
-* 最初由Netscape公司的Brendan Eich设计，是一种动态、弱类型、基于原型的语言，内置支持类。
-* 学习JavaScript语言主要包括三个方面：
-    1. JavaScript语言的语法
-    2. 内置对象
-    3. BOM&DOM模型
+1. JavaScript是目前广泛用于客户端开发的一种脚本语言。
+2. 最初由Netscape公司的Brendan Eich设计，是一种动态、弱类型、基于原型的语言，内置支持类。
+3. 学习JavaScript语言主要包括三个方面：
+    * JavaScript语言的语法
+    * 内置对象
+    * BOM&DOM模型
 
-* 基本语法
-    1. 变量和数据类型
-        * JavaScript是弱类型的语言，基本类型变量通过var声明。
-        * 变量名命名规范和Java的区别是多一个$字符
-        * JavaScript提供三种基本类型：
-            1. 数字类型：Java中的整型、浮点型等都属于数字类型
-            2. 字符串类型：JavaScript中的字符串类型是基本类型
-            3. 布尔类型：true和false
-            4. 此外还有null和undefined常量
-        * 数组
-            1. JavaScript语言中的数组和Java中的数据类似，有两种创建的方式（字面和new关键字），推荐使用字面方式创建数组
-            2. JavaScript数组也支持length()和item(index)等方法。
-        * 类型转换
+4. 基本语法
+    * 变量和数据类型
+        1. JavaScript是弱类型的语言，基本类型变量通过var声明。
+        2. 变量名命名规范和Java的区别是多一个$字符
+        3. JavaScript提供三种基本类型：
+            * 数字类型：Java中的整型、浮点型等都属于数字类型
+            * 字符串类型：JavaScript中的字符串类型是基本类型
+            * 布尔类型：true和false
+            * 此外还有null和undefined常量
+        4. 数组
+            * JavaScript语言中的数组和Java中的数据类似，有两种创建的方式（字面和new关键字），推荐使用字面方式创建数组
+            * JavaScript数组也支持length()和item(index)等方法。
+        5. 类型转换
             * JavaScript语言是弱类型语言，不会出现类型不一致而赋值或比较错误的问题，会发生默认的类型转换。
 
-    2. 运算符与操作符
+    * 运算符与操作符
         * 严格等于与严格不等于
-        ![严格等于与严格不等于](./picture/JavaScriptEqual.png)
+            ![严格等于与严格不等于](./picture/JavaScriptEqual.png)
 
-    3. 函数
-        * 声明函数通过function关键字
-        * 函数没有返回值类型的声明
-        * 如果有形参，形参没有类型的声明
-        * 特殊用法：
-            1. 函数表达式（匿名函数）
+    * 函数
+        1. 声明函数通过function关键字
+        2. 函数没有返回值类型的声明
+        3. 如果有形参，形参没有类型的声明
+        4. 特殊用法：
+            * 函数表达式（匿名函数）
 
                 ```js
                 var area = function(width, height) {
@@ -408,7 +521,7 @@ XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
                 var size = area(3, 4);
                 ```
 
-            2. 立即执行匿名函数
+            * 立即执行匿名函数
 
                 ```js
                 var area = (function() {
@@ -418,30 +531,30 @@ XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
                 })
                 ```
 
-    4. 对象
-        * 方法一：创建对象然后添加属性和方法
-        * 方法二：创建带有属性和方法的对象
-        * 使用：
-            1. 可以通过.操作符和[]运算符访问对象属性
-            2. 属性和方法可以动态增加和删减
+    * 对象
+        1. 方法一：创建对象然后添加属性和方法
+        2. 方法二：创建带有属性和方法的对象
+        3. 使用：
+            * 可以通过.操作符和[]运算符访问对象属性
+            * 属性和方法可以动态增加和删减
 
-    5. 内置对象
-        * 浏览器对象模型BOM
-        * 文档对象模型
-        * 全局JavaScript对象
-        ![内置对象](./picture/JavaScript内置对象.png)
-        * window对象（BOM模型）
-        ![window对象（BOM模型）](./picture/javascript_window_object.png)
-        * document对象（DOM模型）
-        ![document对象（DOM模型）](./picture/javascript_document_object.png)
-        * 全局对象Stirng
-        ![String](./picture/javascript_String_object.png)
-        * 全局对象Number
-        ![Number](./picture/javascript_Number_object.png)
-        * 全局对象Math
-        ![Math](./picture/javascript_Math_object.png)
-        * 全局对象Date和Time
-        ![Date and Time](./picture/javascript_DateAndTime_object.png)
+    * 内置对象
+        1. 浏览器对象模型BOM
+        2. 文档对象模型
+        3. 全局JavaScript对象
+            ![内置对象](./picture/JavaScript内置对象.png)
+        4. window对象（BOM模型）
+            ![window对象（BOM模型）](./picture/javascript_window_object.png)
+        5. document对象（DOM模型）
+            ![document对象（DOM模型）](./picture/javascript_document_object.png)
+        6. 全局对象Stirng
+            ![String](./picture/javascript_String_object.png)
+        7. 全局对象Number
+            ![Number](./picture/javascript_Number_object.png)
+        8. 全局对象Math
+            ![Math](./picture/javascript_Math_object.png)
+        9. 全局对象Date和Time
+            ![Date and Time](./picture/javascript_DateAndTime_object.png)
 
 ## ch09 JavaScript进阶与AJAX基础
 
