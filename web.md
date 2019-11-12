@@ -4,43 +4,44 @@
 
 ### Web应用工作原理
 
-* 客户端把请求发送到服务器端的Web应用程序，Web应用程序接收请求后进行相关处理，并把客户端请求的资源以文本、图片、网页等形式返回到客户端。
-* 由于解析HTML文件一般为浏览器，所以将这种架构称为B/S架构(Browser/Server)。
+* Web应用程序基于**HTTP**等网络应用层协议，采用**请求-响应**的工作模式，其流程一般为
+    1. 客户端把请求发送到服务器端的Web应用程序，Web应用程序接收请求后进行相关处理，并把客户端请求的资源以文本、图片、网页等形式返回到客户端。
+    2. 由于解析HTML文件一般为浏览器，所以将这种架构称为**B/S**架构(Browser/Server)。
 
 ### Web应用的特点
 
-* 发送到集中部署，无需安装客户端程序。
-* 集中管理，业务逻辑在服务段进行维护。
-* 数据共享，所有客户端访问同一服务器。
-* 更强大的平台无关性，不必关心客户端的软硬件平台。
+1. 发送到集中部署，无需安装客户端程序。
+2. 集中管理，业务逻辑在服务段进行维护。
+3. 数据共享，所有客户端访问同一服务器。
+4. 更强大的平台无关性，不必关心客户端的软硬件平台。
 
 ### HTTP
 
-* URL(Uniform Resource Location)
-    1. 语法1：protocol://[host.]domain[:port][/context][/resource][?query=string]
+1. URL(Uniform Resource Location)
+    * 语法1：```protocol://[host.]domain[:port][/context][/resource][?query=string]```
 
-    2. 语法2：protocol://IP address [:port][/context][/resource][?query=string]
+    * 语法2：```protocol://IP address [:port][/context][/resource][?query=string]```
 
-* 请求
-    1. 方法-URI-协议/版本
-    2. 请求头
-    3. 请求正文
+2. 请求
+    * 方法-URI-协议/版本
+    * 请求头
+    * 请求正文
 
-* 请求类型
-    1. GET：获取资源
-    2. POST：传输实体文本
-    3. PUT：传输文件
-    4. DELETE：删除资源或文件
-    5. HEAD：获取响应报文头部
-    6. OPTIONS：询问支持的方法
-    7. TRACE：追踪路径
+3. 请求类型（HTTP1.1规范）
+    * **GET：获取资源**
+    * **POST：传输实体文本**
+    * PUT：传输文件
+    * DELETE：删除资源或文件
+    * HEAD：获取响应报文头部
+    * OPTIONS：询问支持的方法
+    * TRACE：追踪路径
 
-* 响应
-    1. 协议-状态码-描述
-    2. 响应头-信息
-    3. 响应正文
+4. 响应
+    * 协议-状态码-描述
+    * 响应头-信息
+    * 响应正文
 
-* 状态码
+5. 状态码
     |HTTP状态码|含义|
     |:-------:|:--:|
     |200|请求成功|
@@ -54,73 +55,78 @@
 
 ### Web开发平台
 
-* java
-* .NET
-* php
+1. java
+2. .NET
+3. php
 
 ### XML(eXtensible Markup Language)可扩展标记语言
 
-* XML语法规范
-    1. XML规范将一个XML文档分为序言和文档元素两个部分。
-    2. 序言部分包含XML声明、注释和文档类型定义等；文档元素部分则包含元素、子元素、属性和文本等。
-    3. XML声明：XML声明必须是文档的第一行。
+1. XML语法规范
+    * XML规范将一个XML文档分为**序言**和**文档元素**两个部分。
+    * 序言部分包含XML声明、注释和文档类型定义等；文档元素部分则包含元素、子元素、属性和文本等。
+    * XML声明：XML声明必须是文档的第一行。
+    `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`
 
-* 根元素
-    1. 每个XML文档有且只有一个根元素。
-    2. 根元素是一个完全包含文档中其他所有元素的元素。
+2. 根元素
+    * 每个XML文档有且只有一个根元素。
+    * 根元素是一个完全包含文档中其他所有元素的元素。
 
-* 元素
-    1. 一个元素由开始标记、结束标记、可选属性和可选文本组成。
+3. 元素
+    * 一个元素由开始标记、结束标记、可选属性和可选文本组成。
 
-* 格式
-    1. 必须有声明语句
-    2. 有且仅有一个根元素
-    3. 大小写敏感、属性值用引号、标记成对、空标记关闭。。。
+4. 格式
+    * 必须有声明语句
+    * 有且仅有一个根元素
+    * 大小写敏感、属性值用引号、标记成对、空标记关闭。。。
 
-* 有效的XML文档——格式良好+符合DTD或Scheme
+5. 有效的XML文档——格式良好+符合DTD或Scheme
 
-* DTD(文档定义类型)
-    1. DTD文档包括：
-        >1.元素(ELEMENT)的定义则。
-        >2.元素之间的关系规则
-        >3.属性(ATTLIST)的定义规则
-        >4.可使用的实体(ENTITY)和符号(NOTATION)规则
+6. DTD: Document Type Definition(文档定义类型)
+    * DTD文档包括：
+        1. 元素(ELEMENT)的定义则。
+        2. 元素之间的关系规则
+        3. 属性(ATTLIST)的定义规则
+        4. 可使用的实体(ENTITY)和符号(NOTATION)规则
 
-    2. DTD与XML的关系
-        >1.类与对象
-        >2.数据库表结构与数据记录
+    * DTD与XML的关系
+        1. 类与对象
+        2. 数据库表结构与数据记录
 
-    3. 为什么需要DTD
-        >1.不同组织的人可以使用一个通用DTD用来交换数据。
-        >2.应用程序可以使用一个标准DTD校验从外部世界接受来的XML数据是否有效。
+    * 为什么需要DTD
+        1. 不同组织的人可以使用一个通用DTD用来交换数据。
+        2. 应用程序可以使用一个标准DTD校验从外部世界接受来的XML数据是否有效。
 
-* DTD缺点
-    1. DTD不遵守XML语法，导致写XML文档时用一种语法，写DTD时又用另外一种语法；
-    2. DTD数据类型有限，不可扩展，不支持命名空间。
+7. DTD缺点
+    * DTD不遵守XML语法，导致写XML文档时用一种语法，写DTD时又用另外一种语法；
+    * DTD数据类型有限，不可扩展，不支持命名空间。
 
-* Schema
-    1. Schema基于XML语法，所以可以使用解析XML的工具解析Schema文件；
-    2. Schema扩充了数据类型，还支持元素的集成和属性组等。
+8. Schema特点
+    * Schema基于XML语法，所以可以使用解析XML的工具解析Schema文件；
+    * Schema扩充了数据类型，还支持元素的集成和属性组等。
 
-* JDBC
+9. JDBC
+    * JDBC是Java数据库连接(Java Database Connectivity)的简称
+    * 是Java平台(JavaSE)中用来规范客户端程序如何来访问数据库的应用程序接口(API)，提供了诸如查询和更新数据库中数据的方法。
+    * 软件开发人员使用这些标准API来连接和操作数据库，实现数据库应用程序的开发。
+    * JDBC API采用接口和实现分离的设计思想，其中接口主要包含在**java.sql**包中，之后的扩展内容在**javax.sql**包中。
+    * 这些接口的实现类被称为数据库驱动程序，由数据库厂商或其他厂商、个人提供。
 
 ## ch02 Servlet基础
 
-### Servlet基本概率
+1. Servlet基本概念
+    * **Servlet API**是开发Servlet的主要技术，学习这种技术的主要方法就是掌握Servlet API中定义的**核心接口和类**
+    * Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
 
-* Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
+2. Servlet API
+    * **javax.servlet**：定义Servlet和Servlet容器之间契约的类和接口；
+    * **javax.servlet.http**: 定义基于HTTP协议的Servlet的类和接口
+    * javax.servlet.annotation: Servlet、Filter、Listener等接口的注解定义
+    * javax.servlet.descriptor: 一些配置信息的类型定义。
 
-### Servlet API
-
-* javax.servlet：定义Servlet和Servlet容器之间契约的类和接口；
-* javax.servlet.http: 定义基于HTTP协议的Servlet的类和接口
-* javax.servlet.annotation: Servlet、Filter、Listener等接口的注解定义
-* javax.servlet.descriptor: 一些配置信息的类型定义。
-
-### javax.servlet包
-
-* Servlet技术的核心是javax.servlet.Servlet接口，所有的Servlet类必须直接或间接的实现Servlet接口。
-* Servlet容器负责加载和调和具体的Servlet类，每一个类型的Servlet类只能有一个实例。
+3. javax.servlet包
+    ![servlet主要接口和类](./picture/servlet主要接口和类.png)
+    * Servlet技术的核心是javax.servlet.Servlet接口，所有的Servlet类必须直接或间接的实现Servlet接口。
+    * Servlet容器负责加载和调和具体的Servlet类，每一个类型的Servlet类只能有一个实例。
 
 ### Servlet的生命周期
 
@@ -129,25 +135,20 @@
 
 ## ch03 JSP
 
-### JSP基本概念
+1. JSP基本概念
+    * JSP是什么?
+        1. JSP：用Servlet来编写Web应用，导致服务端代码过于繁琐和复杂，将Servlet中的静态部分和动态部分分开来编写，同时提供类似HTML的写法，这就是JSP。
+        2. JSP是一种建立在Servlet规范提供的功能之上的动态网页技术。
+        3. JSP文件在用户第一次请求时，会被编译成Servlet，然后由这个Servlet处理用户的请求。
+        4. JSP可以看成是运行时的Servlet。
+    * JSP执行
+        1. 客户端发出请求;
+        2. JSP容器将JSP转移成Servlet的源代码;
+        3. 编译Servlet，并加载到内存执行;
+        4. 将结果响应至客户端。
 
-1. JSP是什么?
-
-    * JSP：用Servlet来编写Web应用，导致服务端代码过于繁琐和复杂，将Servlet中的静态部分和动态部分分开来编写，同时提供类似HTML的写法，这就是JSP。
-    * JSP是一种建立在Servlet规范提供的功能之上的动态网页技术。
-    * JSP文件在用户第一次请求时，会被编译成Servlet，然后由这个Servlet处理用户的请求。
-    * JSP可以看成是运行时的Servlet。
-
-2. JSP执行
-
-    * 客户端发出请求;
-    * JSP容器将JSP转移成Servlet的源代码;
-    * 编译Servlet，并加载到内存执行;
-    * 将结果响应至客户端。
-
-### JSP语法
-
-1. JSP语法构成
+2. JSP语法
+    * JSP语法构成
 
     用途|格式
     :-:|:-:
@@ -159,56 +160,54 @@
     标准动作|<jsp:动作名>
     注释|<%-- --%>
 
-2. JSP指令元素
+    * JSP指令元素
+        1. **指令(Directives)**:主要用来提供整个JSP网页相关的信息及属性，如编码方式、语法等
+        2. JSP语法中提供三种指令：
+           * **page**：设定整个页面的相关信息
+           * **include**：用于文件的动态包含
+           * **taglib**：用于使用第三方标签库
+        3. JSP脚本元素：
+           声明：`<%! int i=10; %>`
+           表达式：`<%=add(3,4) %>`
+           小脚本：
 
-    * **指令(Directives)**:主要用来提供整个JSP网页相关的信息及属性，如编码方式、语法等
-    * JSP语法中提供三种指令：
-        **page**：设定整个页面的相关信息
-        **include**：用于文件的动态包含
-        **taglib**：用于使用第三方标签库
-    * JSP脚本元素：
-        声明：`<%! int i=10; %>`
-        表达式：`<%=add(3,4) %>`
-        小脚本：
+           ```jsp
+           <%
+               while(i>0) {
+                   out.println(i);
+               }
+           %>
+           ```
 
-        ```jsp
-        <%
-            while(i>0) {
-                out.println(i);
-            }
-        %>
-        ```
+        4. JSP标准动作：将使用JSP进行开发过程中常用的代码块（功能）用一个符号来表示，就是标准动作。常用动作有：
+           <jsp:include>
+           <jsp:forward>
+           <jsp:useBean>
+           <jsp:setProperty>
+           <jsp:getProperty>
 
-    * JSP标准动作：将使用JSP进行开发过程中常用的代码块（功能）用一个符号来表示，就是标准动作。常用动作有：
-        <jsp:include>
-        <jsp:forward>
-        <jsp:useBean>
-        <jsp:setProperty>
-        <jsp:getProperty>
-
-    * JavaBean
-    * JSP隐式对象：javax.servlet.http包中的接口和对象。
-        1. 不需要任何声明和定义就可以直接使用的对象。
-        2. JSP2.0规范中提供了9个隐式对象。
+        5. JavaBean
+        6. JSP隐式对象：javax.servlet.http包中的接口和对象。
+            * 不需要任何声明和定义就可以直接使用的对象。
+            * JSP2.0规范中提供了9个隐式对象。
             (输入/输出对象)request, response, out;
             (作用域通信对象)session, application, pageContext;
             (Servlet对象)page, config;
             (错误对象)exception
 
-### Web
+3. Web
 
-1. 页面关联
-
-    * Web应用程序的优点之一就是能够聚合大量的信息资源，而单个的Web组件所提供的信息和功能是有限的。因此需要通过Web组件间的关联来实现信息的共享和功能的聚合。
-    * Web组件的关联关系：
-        1. 请求转发(forward)
+* 页面关联
+    1. Web应用程序的优点之一就是能够聚合大量的信息资源，而单个的Web组件所提供的信息和功能是有限的。因此需要通过Web组件间的关联来实现信息的共享和功能的聚合。
+    2. Web组件的关联关系：
+        * 请求转发(forward)
             * 请求转发是指将客户端的请求转发给同一个应用程序中的其他Web组件。
             * 在Servlet API中通过RequestDispatcher接口的forward()来实现HTTP请求的转发，同时将ServletRequest和ServletResponse对象传递给目标组件。
             * 在JSP/Servlet技术，具体的操作方式:
                 `request.getRequestDispatcher(“目标”).forward();`
                 标准动作<jsp:forward />
 
-        2. 请求重定向(redirect)
+        * 请求重定向(redirect)
             * Web组件可以将请求重定向到任意的URL。
             * 重定向后即表明该次请求响应流程已完成：
                 返回一个响应给客户端(地址栏发生改变)；
@@ -217,9 +216,9 @@
             * 在JSP/Servlet技术，具体的操作方式有：
                 `response.sendRedirect(“目标”);`
 
-        3. 包含(include)
+        * 包含(include)
 
-2. 会话跟踪
+* 会话跟踪
 
     * 会话跟踪：维持Web应用中服务端和客户端之间的HTTP连接的方法。
     * Web应用中的常用的会话跟踪方法：
