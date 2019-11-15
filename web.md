@@ -43,16 +43,16 @@
 
 5. 状态码
 
-    |HTTP状态码|含义|
-    |:-------:|:--:|
-    |200|请求成功|
-    |201|请求成功并在服务器上创建新资源|
-    |202|请求被接受，但未处理完成|
-    |204|请求成功，但未发布任何新内容|
-    |404|请求的资源不可用|
-    |500|服务器发生内部错误|
-    |501|服务器不支持完成请求所需功能
-    |503|服务器过载，不能对请求进行服务|
+    | HTTP状态码 |              含义              |
+    | :--------: | :----------------------------: |
+    |    200     |            请求成功            |
+    |    201     | 请求成功并在服务器上创建新资源 |
+    |    202     |    请求被接受，但未处理完成    |
+    |    204     |  请求成功，但未发布任何新内容  |
+    |    404     |        请求的资源不可用        |
+    |    500     |       服务器发生内部错误       |
+    |    501     |  服务器不支持完成请求所需功能  |
+    |    503     | 服务器过载，不能对请求进行服务 |
 
 ### Web开发平台
 
@@ -200,15 +200,15 @@
 2. **JSP语法**
     * JSP语法构成
 
-    用途|格式
-    :-:|:-:
-    静态内容|HTML静态文本
-    指令|<%@指令 %>
-    表达式|<%=表达式 %>
-    小脚本|<% Java代码 %>
-    声明|<%! 方法或变量 %>
-    标准动作|<jsp:动作名>
-    注释|<%-- --%>
+    |   用途   |       格式        |
+    | :------: | :---------------: |
+    | 静态内容 |   HTML静态文本    |
+    |   指令   |    <%@指令 %>     |
+    |  表达式  |   <%=表达式 %>    |
+    |  小脚本  |  <% Java代码 %>   |
+    |   声明   | <%! 方法或变量 %> |
+    | 标准动作 |   <jsp:动作名>    |
+    |   注释   |     <%-- --%>     |
 
     * JSP指令元素
         1. **指令(Directives)**:主要用来提供整个JSP网页相关的信息及属性，如编码方式、语法等
@@ -350,13 +350,13 @@
     * 其中uri用于指定tld文件路径，prefix用于给标签指定前缀。
     * JSTL结合EL能大量的简化JSP页面的代码。
 
-    类型|功能|URI|前缀
-    :-:|:-:|:-:|:-:
-    核心标签库|变量控制、逻辑控制、URL管理等|http://java.sun.com/jsp/jstl/core|c
-    XML|XML内容转换|http://java.sun.com/jsp/jstl/xml|x
-    国际化|语言控制、格式化等|http://java.sun.com/jsp/jstl/fmt|fmt
-    数据库|SQL功能|http://java.sun.com/jsp/jstl/sql|sql
-    函数|集合、字符串操作等|http://java.sun.com/jsp/jstl/functions|fn
+    |    类型    |             功能              |                  URI                   | 前缀  |
+    | :--------: | :---------------------------: | :------------------------------------: | :---: |
+    | 核心标签库 | 变量控制、逻辑控制、URL管理等 |   http://java.sun.com/jsp/jstl/core    |   c   |
+    |    XML     |          XML内容转换          |    http://java.sun.com/jsp/jstl/xml    |   x   |
+    |   国际化   |      语言控制、格式化等       |    http://java.sun.com/jsp/jstl/fmt    |  fmt  |
+    |   数据库   |            SQL功能            |    http://java.sun.com/jsp/jstl/sql    |  sql  |
+    |    函数    |      集合、字符串操作等       | http://java.sun.com/jsp/jstl/functions |  fn   |
 
     * 常用标签
         1. <c:set>
@@ -637,14 +637,14 @@
         3. XMLHttpRequest对象不是W3C中的内容，在不同浏览器上的表现有所不同，不过常用的方法和属性都得到了广泛的支持。
         4. XMLHttpRequest对象的常用方法
 
-            |方法|描述|
-            |:-:|:-:|
-            |abort()|停止当前请求|
-            |getAllResponseHeaders()|将响应头作为键值对返回|
-            |getResponseHeader(“header”)|返回指定头部字段的值|
-            |open(”method”,”url”)|建立对服务器的调用。method参数表示请求方法，url表示请求的资源|
-            |send(content)|向服务器发送请求|
-            |setRequestHeader()|设置请求头中某个字段的值|
+            |            方法             |                             描述                              |
+            | :-------------------------: | :-----------------------------------------------------------: |
+            |           abort()           |                         停止当前请求                          |
+            |   getAllResponseHeaders()   |                    将响应头作为键值对返回                     |
+            | getResponseHeader(“header”) |                     返回指定头部字段的值                      |
+            |    open(”method”,”url”)     | 建立对服务器的调用。method参数表示请求方法，url表示请求的资源 |
+            |        send(content)        |                       向服务器发送请求                        |
+            |     setRequestHeader()      |                   设置请求头中某个字段的值                    |
 
             * void open(**String method, String url**, boolean asynch, String username, String password )
             * 这个方法会建立对服务器的调用。这是初始化一个请求的纯脚本方法。它有两个必要的参数，三个可选的参数。第三个boolean值用于指定是异步还是同步通信方式，默认为true，即异步。
@@ -654,13 +654,13 @@
 
         5. XMLHttpRequest对象的常用事件和属性
 
-            |属性和事件|描述|
-            |:-:|:-:|
-            |onreadystatechange|请求的状态发生改变时会触发这个事件，通常会调用一个JavaScript函数|
-            |readyState|表示请求状态的属性，有5个可取的值：0=未初始化，1=正在加载，2=已加载，3=交互中，4=完成。|
-            |responseText|服务器的响应，表示为一个字符串|
-            |responseXML|服务器的响应，用XML封装，可以被解析为DOM。|
-            |status|服务器状态码|
+            |     属性和事件     |                                          描述                                           |
+            | :----------------: | :-------------------------------------------------------------------------------------: |
+            | onreadystatechange |            请求的状态发生改变时会触发这个事件，通常会调用一个JavaScript函数             |
+            |     readyState     | 表示请求状态的属性，有5个可取的值：0=未初始化，1=正在加载，2=已加载，3=交互中，4=完成。 |
+            |    responseText    |                             服务器的响应，表示为一个字符串                              |
+            |    responseXML     |                       服务器的响应，用XML封装，可以被解析为DOM。                        |
+            |       status       |                                      服务器状态码                                       |
 
         6. 使用XMLHttpRequest对象完成异步通信的流程
             ![XMLHttpRequest对象完成异步通信的流程](./image/web/XHR异步通信流程.png)
@@ -801,24 +801,24 @@
         1. Error对象是JavaScript语言中的异常对象，当脚本中有错误发生时，浏览器会将相关错误信息封装在Error对象中。
         2. 属性：
 
-            |属性|描述|
-            |:-:|:-:|
-            |name|异常描述|
-            |message|描述|
-            |fileNumber|JavaScript文件名称|
-            |liineNumber|错误所在代码行数|
+            |    属性     |        描述        |
+            | :---------: | :----------------: |
+            |    name     |      异常描述      |
+            |   message   |        描述        |
+            | fileNumber  | JavaScript文件名称 |
+            | liineNumber |  错误所在代码行数  |
 
         3. Error对象继承体系
 
-            |对象|描述|
-            |:-:|:-:|
-            |Error|一般性错误，父类|
-            |SyntaxError|语法错误|
-            |ReferenceError|尝试应用未在作用域内声明的量|
-            |TypeError|意外的数据类型，无法进行自动类型转换|
-            |RangeError|数字超出可接受范围|
-            |URIError|URI编码或解码错误|
-            |EvalError|eval()函数出错|
+            |      对象      |                 描述                 |
+            | :------------: | :----------------------------------: |
+            |     Error      |           一般性错误，父类           |
+            |  SyntaxError   |               语法错误               |
+            | ReferenceError |     尝试应用未在作用域内声明的量     |
+            |   TypeError    | 意外的数据类型，无法进行自动类型转换 |
+            |   RangeError   |          数字超出可接受范围          |
+            |    URIError    |          URI编码或解码错误           |
+            |   EvalError    |            eval()函数出错            |
 
     * JavaScript错误调试
         1. 工具：Chrome或Firefox的开发者模式，及一些插件。
