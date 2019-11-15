@@ -157,7 +157,7 @@
     * javax.servlet.descriptor: 一些配置信息的类型定义。
 
 3. **javax.servlet包**
-    ![servlet主要接口和类](./picture/servlet主要接口和类.png)
+    ![servlet主要接口和类](./picture/webPictures/servlet主要接口和类.png)
     * Servlet技术的核心是javax.servlet.Servlet接口，所有的Servlet类必须直接或间接的实现Servlet接口。
     * Servlet容器负责加载和调和具体的Servlet类，每一个类型的Servlet类只能有一个实例。
 
@@ -305,16 +305,16 @@
 ## ch04 MVC基础
 
 1. MVC模式
-    ![MVC模式](./picture/MVC.png)
+    ![MVC模式](./picture/webPictures/MVC.png)
 
 2. MVC分层模型
-    ![MVC分层模型](./picture/MVC分层模型.png)
+    ![MVC分层模型](./picture/webPictures/MVC分层模型.png)
     * **Model**由JavaBean组成，又可以细分为领域对象、业务bean和DAO
     * **View**由JSP组成
     * **Controller**由Servlet实现
 
 3. 项目结构
-    ![项目结构](./picture/项目结构.png)
+    ![项目结构](./picture/webPictures/项目结构.png)
     * domain：JavaBean
     * persistence：DAO
     * service
@@ -337,7 +337,7 @@
         4. EL关键字：and, eq, gt, true, instanceof, or, ne, le, false, empty, not, it, ge, null, div, mod
 
     * EL隐式对象
-    ![EL隐式对象](./picture/EL隐式对象.png)
+    ![EL隐式对象](./picture/webPictures/EL隐式对象.png)
 
 2. JSTL(JSP Standard Tag Library)
 
@@ -407,7 +407,7 @@
         2. HttpSession：监听会话对象Session的相关事件
         3. ServletRequest：监听请求对象Request的相关事件
     * 监听器API
-        ![监听器API](./picture/监听器API.png)
+        ![监听器API](./picture/webPictures/监听器API.png)
     * 编写监听器方法：
         1. 实现相关监听器接口，并完成具体方法实现
 
@@ -504,7 +504,7 @@
 
     * 运算符与操作符
         * 严格等于与严格不等于
-            ![严格等于与严格不等于](./picture/JavaScriptEqual.png)
+            ![严格等于与严格不等于](./picture/webPictures/JavaScriptEqual.png)
 
     * 函数
         1. 声明函数通过function关键字
@@ -542,19 +542,19 @@
         1. 浏览器对象模型BOM
         2. 文档对象模型
         3. 全局JavaScript对象
-            ![内置对象](./picture/JavaScript内置对象.png)
+            ![内置对象](./picture/webPictures/JavaScript内置对象.png)
         4. window对象（BOM模型）
-            ![window对象（BOM模型）](./picture/javascript_window_object.png)
+            ![window对象（BOM模型）](./picture/webPictures/javascript_window_object.png)
         5. document对象（DOM模型）
-            ![document对象（DOM模型）](./picture/javascript_document_object.png)
+            ![document对象（DOM模型）](./picture/webPictures/javascript_document_object.png)
         6. 全局对象Stirng
-            ![String](./picture/javascript_String_object.png)
+            ![String](./picture/webPictures/javascript_String_object.png)
         7. 全局对象Number
-            ![Number](./picture/javascript_Number_object.png)
+            ![Number](./picture/webPictures/javascript_Number_object.png)
         8. 全局对象Math
-            ![Math](./picture/javascript_Math_object.png)
+            ![Math](./picture/webPictures/javascript_Math_object.png)
         9. 全局对象Date和Time
-            ![Date and Time](./picture/javascript_DateAndTime_object.png)
+            ![Date and Time](./picture/webPictures/javascript_DateAndTime_object.png)
 
 ## ch09 JavaScript进阶与AJAX基础
 
@@ -599,15 +599,15 @@
         2. 事件从类型上可以分为：
             * 浏览器事件
             * 键盘事件
-                ![浏览器和键盘事件](./picture/javascript_UIAndKeyboardEvents.png)
+                ![浏览器和键盘事件](./picture/webPictures/javascript_UIAndKeyboardEvents.png)
             * 鼠标事件
-                ![鼠标事件](./picture/javascript_MouseEvents.png)
+                ![鼠标事件](./picture/webPictures/javascript_MouseEvents.png)
             * 焦点事件
-                ![焦点事件](./picture/javascript_FocusEvents.png)
+                ![焦点事件](./picture/webPictures/javascript_FocusEvents.png)
             * 表单事件
-                ![表单事件](./picture/javascript_FormEvents.png)
+                ![表单事件](./picture/webPictures/javascript_FormEvents.png)
             * DOM事件
-                ![DOM事件](./picture/javascript_DOMEvents.png)
+                ![DOM事件](./picture/webPictures/javascript_DOMEvents.png)
         3. 事件处理
             * JavaScript事件处理分为三个步骤：选定元素、事件绑定、事件处理。
             * 事件绑定有三种方法：HTML绑定、传统DOM绑定和DOM监听器。
@@ -639,7 +639,7 @@
         1. 同步通信方式：即典型的请求响应模型。在传统的Web应用模型下，大部分的用户操作都会发送一个HTTP请求给服务器，然后服务器开始处理（接收数据，执行业务逻辑，访问数据库等），最后向浏览器返回HTML页面。
         2. 异步通信方式：异步发送请求，消除了传统的“发送请求－等待－发送请求－等待”的特性，极大的提高了用户体验，其核心是XMLHttpRequest对象。
     * 传统Web应用和AJAX应用的区别
-        ![传统Web应用和AJAX应用的区别](./picture/AJAXAndWeb.png)
+        ![传统Web应用和AJAX应用的区别](./picture/webPictures/AJAXAndWeb.png)
     * XMLHttpRequest对象
         1. XMLHttpRequest对象是实现AJAX技术的核心技术，是一种支持异步通信的机制。
         2. XMLHttpRequest对象最早是在Microsoft的IE5中以Active X组件形式实现的。
@@ -672,7 +672,7 @@
             |status|服务器状态码|
 
         6. 使用XMLHttpRequest对象完成异步通信的流程
-            ![XMLHttpRequest对象完成异步通信的流程](./picture/XMLHttpRequest异步通信流程.png)
+            ![XMLHttpRequest对象完成异步通信的流程](./picture/webPictures/XMLHttpRequest异步通信流程.png)
 
 ## ch10 AJAX进阶与JQuery入门
 
@@ -725,7 +725,7 @@
         2. .after()
         3. .prepand()
         4. append()
-            ![插入元素](./picture/jQuery_insertElement.png)
+            ![插入元素](./picture/webPictures/jQuery_insertElement.png)
     * 迭代元素.each()
     * 事件处理.on()
 
@@ -751,9 +751,9 @@
 
 2. AJAX与JQuery
     * 常用API
-        ![jQuery与AJAX请求](./picture/jquery_ajax_request.png);
-        ![jQuery与AJAX响应](./picture/jquery_ajax_response.png);
-        ![.ajax()](./picture/.ajax.png);
+        ![jQuery与AJAX请求](./picture/webPictures/jquery_ajax_request.png);
+        ![jQuery与AJAX响应](./picture/webPictures/jquery_ajax_response.png);
+        ![.ajax()](./picture/webPictures/.ajax.png);
 
         1. $.get()：使用HTTP GET方法向服务器请求数据，并加载返回的结果。
 
