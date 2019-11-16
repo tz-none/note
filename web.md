@@ -23,7 +23,7 @@
     * 语法2：```protocol://IP address [:port][/context][/resource][?query=string]```
 
 2. 请求
-    * 方法-URI-协议/版本
+    * 方法-URL-协议/版本
     * 请求头
     * 请求正文
 
@@ -157,8 +157,8 @@
     * javax.servlet.annotation: Servlet、Filter、Listener等接口的注解定义
     * javax.servlet.descriptor: 一些配置信息的类型定义。
 
-3. **javax.servlet包**
-    ![servlet主要接口和类](./image/web/servlet主要接口和类.png)
+3. **javax.servlet包中主要接口和类**
+    ![servlet主要接口和类](./image/web/javax.servlet包中主要接口和类.png)
     * Servlet技术的核心是javax.servlet.Servlet接口，所有的Servlet类必须直接或间接的实现Servlet接口。
     * Servlet容器负责加载和调和具体的Servlet类，每一个类型的Servlet类只能有一个实例。
 
