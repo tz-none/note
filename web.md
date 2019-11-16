@@ -742,9 +742,9 @@
 
 2. AJAX与JQuery
     * 常用API
-        ![jQuery与AJAX请求](./image/web/jquery_ajax_request.png);
-        ![jQuery与AJAX响应](./image/web/jquery_ajax_response.png);
-        ![.ajax()](./image/web/.ajax.png);
+        ![jQuery与AJAX请求](./image/web/jquery_ajax_request.png)
+        ![jQuery与AJAX响应](./image/web/jquery_ajax_response.png)
+        ![.ajax()](./image/web/.ajax.png)
 
         1. $.get()：使用HTTP GET方法向服务器请求数据，并加载返回的结果。
 
