@@ -594,7 +594,7 @@
             * 鼠标事件
                 ![鼠标事件](./image/web/js_mouseEvents.png)
             * 焦点事件
-                ![焦点事件](./image/web/js_focusEvnets.png)
+                ![焦点事件](./image/web/js_focusEvents.png)
             * 表单事件
                 ![表单事件](./image/web/js_formEvents.png)
             * DOM事件
