@@ -82,9 +82,11 @@
 ### 文法形式化定义和分类
 
 **形式化定义**：
+
 ![文法形式化定义](image/compilation/文法形式化定义.png)
 
 **分类**：
+
 ![分类](image/compilation/文法分类.png)
 > 左线性文法：A->Ba或A->a，和右线性类似。
 >
@@ -101,19 +103,23 @@
 ### 文法和语言
 
 **推导和归约**：
+
 ![定义1](image/compilation/推导与归约1.png)
 ![定义2](image/compilation/推导与归约2.png)
 ![定义3](image/compilation/推导与归约3.png)
 
 **最左推导和最右推导**：
+
 ![定义](image/compilation/最左推导与最右推导.png)
 > 最右直接推导又称为规范直接推导，最右推导称为规范推导
 
 **最左归约和最右归约**：
+
 ![定义](image/compilation/最左归约和最右归约.png)
 > 最左推导的逆过程是最右归约，最右推导的逆过程是最左归约
 
 **句型、句子、语言**：
+
 ![定义](image/compilation/句型句子语言.png)
 
 **文法等价**：如果两个文法定义的语言一样，则称这两个文法等价。
@@ -121,7 +127,81 @@
 ### 语法分析树
 
 **语法分析树**：
+
 ![语法分析树](image/compilation/语法分析树.png)
 
 **文法二义性**：
+
 ![定义](image/compilation/文法二义性.png)
+
+## 词法分析
+
+### 词法分析概述
+
+**任务**：
+
+![词法分析程序任务](image/compilation/词法分析程序任务.png)
+
+**功能**：
+
+![词法分析程序功能](image/compilation/词法分析程序功能.png)
+
+**安排**：
+
+![词法分析程序安排](image/compilation/词法分析程序安排.png)
+
+**实现方式**：
+
+![词法分析程序实现方式](image/compilation/词法分析程序实现方式.png)
+
+**输出形式**：
+
+![词法分析程序输出形式](image/compilation/词法分析程序输出形式.png)
+
+### 词法分析程序设计
+
+**状态转换图**：
+
+![定义](image/compilation/状态转换图.png)
+> 实现方法：每个结点对应一段程序，前面状态结的程序调用其后继结点的程序。
+
+为实现状态转换图引入的**标准函数与变量**：
+
+![标准函数和变量](image/compilation/状态转换图实现-标准函数和变量.png)
+
+### 正规表达式和有限自动机
+
+基本概念：
+
+- 字母表$\Sigma$：元素的非空有限集合
+- 字符：字母表$\Sigma$的一个元素称为一个字符
+- $\Sigma$上的字：$\Sigma$上字符的有穷序列
+- 空字$\epsilon$：不含任何字符的字
+- 字的长度：|$\alpha$|
+- $\Sigma$上的全体：$\Sigma^*$
+- 字的连接：字$\alpha$与字$\beta$的连接记为$\alpha\beta$
+- 字的方幂：字$\alpha$的n次连接称为$\alpha$的n次方幂，记为$\alpha^n$
+- 字的集合A和B的乘积记作$AB=\{\alpha\beta | \alpha \in A \land \beta \in B\}$，其中$A,B \in \Sigma^*$
+- $\Sigma^*$子集的方幂：$A^0=\{\epsilon\}, A^1=A, ..., A^n=AA...A=A^{n-1}A$
+- $\Sigma^*$子集的正则闭包：$A^+=A^1 \bigcup A^2 \bigcup ...$
+- $\Sigma^*$子集的闭包：$A^+=A^0 \bigcup A^1 \bigcup A^2 \bigcup ...=A^0 \bigcup A^+=\{\epsilon\} \bigcup A^+$
+
+**正规式与正规集**：
+
+![定义](image/compilation/正规式与正规集定义.png)
+> 优先级(递增)：或(|, $\bigcup$)，连接(·, $\bigcap$)，闭包(*)
+>
+> 若两个正规式表示正规集相同，则认为二者等价
+
+**正规式性质**：
+
+![正规式性质](image/compilation/正规式性质.png)
+
+**确定型有限状态自动机**：
+
+![定义](image/compilation/确定有限状态自动机定义.png)
+![概率与性质](image/compilation/确定有限状态自动机概率与性质.png)
+
+**非确定有限状态自动机**：
+
+![定义](image/compilation/非确定有限状态自动机定义.png)
